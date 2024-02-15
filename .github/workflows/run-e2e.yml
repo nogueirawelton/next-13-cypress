@@ -2,6 +2,9 @@ name: Run E2E tests
 
 on: push
 
+runs:
+  using: "node20"
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
