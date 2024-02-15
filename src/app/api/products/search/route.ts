@@ -9,6 +9,8 @@ interface Props {
 }
 
 export async function GET(request: NextRequest) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   const { searchParams } = request.nextUrl;
 
   const search = z.string().parse(searchParams.get("s"));
@@ -18,8 +20,6 @@ export async function GET(request: NextRequest) {
       .toLocaleLowerCase()
       .includes(search.toLocaleLowerCase());
   });
-
-  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   return Response.json(products);
 }

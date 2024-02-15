@@ -8,7 +8,7 @@ interface Props {
 }
 
 export async function GET(request: Request, { params }: Props) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const slug = z.string().parse(params.slug);
 
