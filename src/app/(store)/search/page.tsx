@@ -6,12 +6,12 @@ import { redirect } from "next/navigation";
 
 interface SearchProps {
   searchParams: {
-    s: string;
+    q: string;
   };
 }
 
-async function searchProducts(s: string): Promise<Product[]> {
-  const response = await api(`/products/search?s=${s}`, {
+async function searchProducts(q: string): Promise<Product[]> {
+  const response = await api(`/products/search?q=${q}`, {
     next: {
       revalidate: 60 * 60,
     },
@@ -22,18 +22,18 @@ async function searchProducts(s: string): Promise<Product[]> {
 }
 
 export default async function Search({ searchParams }: SearchProps) {
-  const { s } = searchParams;
+  const { q } = searchParams;
 
-  if (!s) {
+  if (!q) {
     redirect("/");
   }
 
-  const products = await searchProducts(s);
+  const products = await searchProducts(q);
 
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm">
-        Resultados para: <span className="font-semibold">{s}</span>
+        Resultados para: <span className="font-semibold">{q}</span>
       </p>
 
       <div className="grid grid-cols-3 gap-6">
@@ -44,7 +44,7 @@ export default async function Search({ searchParams }: SearchProps) {
             className="items-cend group relative flex aspect-square justify-center overflow-hidden rounded-lg bg-zinc-900"
           >
             <Image
-              src={`/img/${product.image}`}
+              src={`/img${product.image}`}
               fill
               quality={100}
               alt={product.title}

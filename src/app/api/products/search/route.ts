@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = request.nextUrl;
 
-  const search = z.string().parse(searchParams.get("s"));
+  const search = z.string().parse(searchParams.get("q"));
 
   const products = data.products.filter((product) => {
     return product.title

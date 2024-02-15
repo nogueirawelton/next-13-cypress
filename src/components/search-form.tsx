@@ -14,12 +14,12 @@ export function SearchForm() {
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
 
-    const { s } = data;
+    const { q } = data;
 
-    if (!s) {
+    if (!q) {
       return null;
     }
-    router.push(`/search?s=${s}`);
+    router.push(`/search?q=${q}`);
   }
   return (
     <form
@@ -31,9 +31,9 @@ export function SearchForm() {
       <input
         type="text"
         placeholder="Buscar produtos..."
-        name="s"
+        name="q"
         required
-        defaultValue={searchParams.get("s") || ""}
+        defaultValue={searchParams.get("q") || ""}
         className="w-full bg-transparent text-sm outline-none placeholder:text-zinc-500"
       />
     </form>
