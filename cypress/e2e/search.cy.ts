@@ -5,7 +5,7 @@ describe("search products", () => {
     cy.searchByQuery("moletom");
 
     cy.location("pathname").should("include", "/search");
-    cy.location("search").should("include", "s=moletom");
+    cy.location("search").should("include", "q=moletom");
 
     cy.get("a[href^='/product']").should("exist");
   });

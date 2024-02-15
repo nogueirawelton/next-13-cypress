@@ -1,4 +1,0 @@
-name: "Worflow"
-description: "Starting with github workflows"
-runs:
-  using: "node20"
